@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | First Choice Plumbing</title>
+    <meta name="description" content="See our work — before and after plumbing projects including pipe replacements, water heater installations, drain cleaning, and full bathroom remodels.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=4">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <style>
+        .page-hero { background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); color: white; padding: 4rem 0 3rem; text-align: center; }
+        .page-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: .6rem; }
+        .page-hero p { color: rgba(255,255,255,.8); font-size: 1.05rem; }
+        .breadcrumb { display: flex; align-items: center; gap: .5rem; justify-content: center; font-size: .85rem; margin-bottom: 1.2rem; color: rgba(255,255,255,.6); }
+        .breadcrumb a { color: rgba(255,255,255,.7); } .breadcrumb a:hover { color: var(--orange); }
+
+        .gallery-section { padding: 5rem 0; }
+        .gallery-filters { display: flex; gap: .65rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+        .filter-btn { padding: .45rem 1.1rem; border: 1.5px solid var(--gray-300); border-radius: 50px; background: white; font-size: .88rem; font-weight: 600; color: var(--gray-700); cursor: pointer; transition: all .2s ease; }
+        .filter-btn:hover, .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+        .gallery-item { border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 4/3; cursor: pointer; }
+        .gallery-item-inner { width: 100%; height: 100%; background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .5rem; color: white; text-align: center; padding: 1.5rem; transition: transform .3s ease; }
+        .gallery-item:hover .gallery-item-inner { transform: scale(1.05); }
+        .gallery-item-inner svg { width: 48px; height: 48px; opacity: .5; }
+        .gallery-item-inner strong { font-size: 1rem; font-weight: 700; }
+        .gallery-item-inner span { font-size: .8rem; opacity: .75; }
+        .gallery-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span { color: var(--on-yellow); font-weight: 700; font-size: .9rem; background: var(--orange); padding: .5rem 1.2rem; border-radius: 50px; }
+        .gallery-tag { position: absolute; top: .75rem; left: .75rem; background: var(--orange); color: var(--on-yellow); font-size: .75rem; font-weight: 700; padding: .25rem .75rem; border-radius: 50px; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-left"><div class="top-bar-item">Serving Your Local Area</div></div>
+        <div class="top-bar-right">
+            <span class="badge">⚡ Emergency Service Available</span>
+            <div class="top-bar-item"><a href="tel:+15551234567">📞 (555) 123-4567</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <div class="logo-text">
+                    <strong>First Choice Plumbing</strong>
+                    <span>Licensed &amp; Insured Professionals</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="tel:+15551234567" class="nav-phone">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg>
+                    (555) 123-4567
+                </a>
+                <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+            </div>
+            <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Gallery</span></div>
+        <h1>Our Work Gallery</h1>
+        <p>Before &amp; after photos of real jobs completed by our licensed plumbers</p>
+    </div>
+</div>
+
+<section class="gallery-section">
+    <div class="container">
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="Emergency">Emergency Repairs</button>
+            <button class="filter-btn" data-filter="Drain Cleaning">Drain Cleaning</button>
+            <button class="filter-btn" data-filter="Water Heater">Water Heaters</button>
+            <button class="filter-btn" data-filter="Bathroom">Bathroom</button>
+            <button class="filter-btn" data-filter="Sewer">Sewer Lines</button>
+            <button class="filter-btn" data-filter="Commercial">Commercial</button>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#1e3a5f,#2563eb)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    <strong>Burst Pipe Repair</strong>
+                    <span>Emergency — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Emergency</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2z"/></svg>
+                    <strong>Tankless Water Heater</strong>
+                    <span>Installation — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Water Heater</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#065f46,#059669)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <strong>Full Bathroom Remodel</strong>
+                    <span>Complete Plumbing — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Bathroom</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#7f1d1d,#dc2626)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                    <strong>Sewer Line Replacement</strong>
+                    <span>Trenchless — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Sewer</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#713f12,#d97706)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <strong>Leak Detection</strong>
+                    <span>Thermal Imaging — Slab Leak</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Leak Detection</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#1e3a5f,#0891b2)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <strong>Restaurant Plumbing</strong>
+                    <span>Commercial — Full Install</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Commercial</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#134e4a,#14b8a6)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M19 7H5a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>
+                    <strong>Hydro-Jet Drain Cleaning</strong>
+                    <span>Main Line — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Drain Cleaning</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#312e81,#6d28d9)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 3v1m0 16v1M4.22 4.22l.71.71m12.73 12.73l.71.71M3 12h1m16 0h1M4.22 19.78l.71-.71M18.36 5.64l.71-.71"/><circle cx="12" cy="12" r="5"/></svg>
+                    <strong>Water Softener System</strong>
+                    <span>Whole-House — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Water Treatment</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#1c1917,#44403c)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <strong>Gas Line Installation</strong>
+                    <span>New Build — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Gas Lines</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                    <strong>Full House Repipe</strong>
+                    <span>PEX Upgrade — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Repipe</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#166534,#16a34a)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    <strong>Kitchen Remodel</strong>
+                    <span>Full Plumbing — Residential</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Kitchen</span>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-item-inner" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    <strong>Annual Maintenance</strong>
+                    <span>Commercial Contract — Office</span>
+                </div>
+                <div class="gallery-overlay"><span>View Project</span></div>
+                <span class="gallery-tag">Commercial</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding:4rem 0;background:var(--blue);color:white;text-align:center">
+    <div class="container">
+        <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:.8rem">Want Results Like These?</h2>
+        <p style="color:rgba(255,255,255,.8);margin-bottom:2rem;font-size:1.05rem">Get a free quote from our licensed professionals — same-day service available.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+            <a href="tel:+15551234567" class="btn btn-primary btn-lg">Call (555) 123-4567</a>
+            <a href="contact.html" class="btn btn-outline-white btn-lg">Request a Quote</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom" style="padding:1.5rem 0">
+            <span>&copy; 2026 First Choice Plumbing. All rights reserved.</span>
+            <span><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="services.html">Services</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></span>
+        </div>
+    </div>
+</footer>
+
+<a href="tel:+15551234567" class="float-call" aria-label="Call Now">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg>
+</a>
+<script src="js/main.js"></script>
+<script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.dataset.filter;
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                const tag = item.querySelector('.gallery-tag');
+                item.hidden = filter !== 'all' && (!tag || tag.textContent.trim() !== filter);
+            });
+        });
+    });
+</script>
+</body>
+</html>

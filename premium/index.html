@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>First Choice Plumbing | Precision Plumbing, 24/7</title>
+    <meta name="description" content="First Choice Plumbing — licensed master plumbers on call 24/7. 60-minute emergency response, upfront flat-rate pricing and a 2-year workmanship warranty.">
+    <script>
+        // Apply the saved theme before first paint to avoid a flash
+        try { const t = localStorage.getItem('fcp-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/premium.css?v=11">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FFE000'/><text x='50' y='70' font-size='60' text-anchor='middle'>🔧</text></svg>">
+</head>
+<body class="is-loading">
+
+<!-- SVG filters (image distortion) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="distort" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence id="distort-noise" type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="3" result="noise"/>
+        <feDisplacementMap id="distort-map" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+</svg>
+
+<!-- 1. Loading screen -->
+<div class="loader" aria-hidden="true">
+    <canvas class="loader-particles"></canvas>
+    <div class="loader-inner">
+        <svg class="loader-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        <div class="loader-name"><span>First Choice Plumbing</span></div>
+        <div class="loader-bar"><i></i></div>
+        <div class="loader-count"><span class="loader-num">000</span>%</div>
+    </div>
+</div>
+<div class="loader-wipe"></div>
+<div class="page-transition"></div>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<!-- Navigation -->
+<header class="nav">
+    <div class="wrap">
+        <div class="nav-bar">
+            <a href="#top" class="brand" data-cursor>
+                <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
+                <span>First Choice<small>Plumbing · Est. 2009</small></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#all-services">All services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" aria-label="Toggle dark and light mode" data-cursor>
+                    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                </button>
+                <a href="tel:+15551234567" class="btn btn-primary btn-call magnetic"><span class="btn-label">(555) 123-4567</span></a>
+                <button class="icon-btn menu-toggle" aria-label="Open menu" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h16M4 16h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#all-services">All services</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <button class="icon-btn theme-toggle" aria-label="Toggle dark and light mode" style="display:none">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+    </button>
+</nav>
+
+<main id="top">
+
+    <!-- 2. Hero -->
+    <section class="hero">
+        <div class="hero-canvas" aria-hidden="true"></div>
+        <div class="wrap hero-content">
+            <div class="hero-badge hero-in"><span class="pulse"></span> Plumbers on call right now <b>60-min response</b></div>
+            <h1 class="display split hero-title">Plumbing, <span class="hl">engineered</span> to never let you down.</h1>
+            <p class="hero-sub hero-in">Licensed master plumbers, upfront flat-rate pricing and a 2-year workmanship warranty. Day or night, we're at your door within the hour.</p>
+            <div class="hero-ctas hero-in">
+                <a href="#contact" class="btn btn-primary magnetic"><span class="btn-label">Get a free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span></a>
+                <a href="tel:+15551234567" class="btn btn-ghost magnetic"><span class="btn-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg> Emergency line</span></a>
+            </div>
+        </div>
+        <div class="hero-meta" aria-hidden="true">
+            <div class="float-card" data-depth="1.4"><strong>4.9★</strong><span>Google rating</span></div>
+            <div class="float-card" data-depth="2.2"><strong>24/7</strong><span>Emergency ready</span></div>
+        </div>
+        <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><i></i></div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <div class="marquee-group">
+                <span>Emergency Repairs</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                <span>Drain Cleaning</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                <span>Water Heaters</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                <span>Leak Detection</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                <span>Sewer Lines</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                <span>Repiping</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. About -->
+    <section class="section about" id="about">
+        <div class="wrap">
+            <div class="about-grid">
+                <div>
+                    <div class="section-head">
+                        <span class="eyebrow">Our story</span>
+                        <h2 class="display split">From one truck to the team your neighbors call first.</h2>
+                    </div>
+                    <div class="about-story">
+                        <p class="reveal">First Choice Plumbing started in <strong>2009</strong> with master plumber <strong>Kevin</strong>, one truck and one promise: give homeowners a plumber they can actually trust.</p>
+                        <p class="reveal">Today we're a team of <strong>6 licensed professionals</strong>. The promise hasn't changed. Every plumber is trained by Kevin, every job is flat-rate, and we never recommend work you don't need.</p>
+                        <a href="#contact" class="btn btn-ghost magnetic reveal"><span class="btn-label">Work with us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span></a>
+                    </div>
+                </div>
+
+                <!-- 3D layered cutout -->
+                <div class="about-visual">
+                    <div class="cutout-stage" data-tilt="8">
+                        <div class="layer l-back">
+                            <svg viewBox="0 0 400 500" aria-hidden="true">
+                                <defs>
+                                    <radialGradient id="sun" cx="50%" cy="40%" r="50%"><stop offset="0" stop-color="#E4FF1A"/><stop offset="1" stop-color="#C6E200" stop-opacity="0"/></radialGradient>
+                                    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0v28" fill="none" stroke="currentColor" stroke-opacity=".08"/></pattern>
+                                </defs>
+                                <rect width="400" height="500" fill="url(#grid)" rx="28"/>
+                                <circle cx="200" cy="200" r="150" fill="url(#sun)" opacity=".55"/>
+                                <path d="M0 360 H120 a30 30 0 0 1 30 30 V500" fill="none" stroke="#E4FF1A" stroke-opacity=".25" stroke-width="18"/>
+                                <path d="M400 120 H300 a30 30 0 0 0 -30 30 V230" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="18"/>
+                            </svg>
+                        </div>
+                        <div class="layer l-mid">
+                            <!-- Plumber cutout -->
+                            <svg viewBox="0 0 400 500" aria-hidden="true">
+                                <g transform="translate(200 280)">
+                                    <path d="M-120 220 C-120 110 -80 70 0 70 C80 70 120 110 120 220 Z" fill="#1b1b1d"/>
+                                    <path d="M-62 78 L-40 220 H-14 L-24 76 Z M62 78 L40 220 H14 L24 76 Z" fill="#E4FF1A"/>
+                                    <path d="M-52 150 H-10 M52 150 H10" stroke="#d9d9d9" stroke-width="8"/>
+                                    <rect x="-18" y="30" width="36" height="46" rx="10" fill="#c98f63"/>
+                                    <circle cx="0" cy="-12" r="58" fill="#d9a178"/>
+                                    <path d="M-66 -24 C-66 -96 66 -96 66 -24 Z" fill="#E4FF1A"/>
+                                    <rect x="-80" y="-30" width="160" height="16" rx="8" fill="#C6E200"/>
+                                    <rect x="-8" y="-92" width="16" height="64" rx="8" fill="#C6E200"/>
+                                    <circle cx="-20" cy="2" r="5" fill="#1b1b1d"/><circle cx="20" cy="2" r="5" fill="#1b1b1d"/>
+                                    <path d="M-16 24 Q0 36 16 24" stroke="#1b1b1d" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="layer l-front">
+                            <svg viewBox="0 0 400 500" aria-hidden="true">
+                                <g transform="translate(300 330) rotate(-28)">
+                                    <rect x="-10" y="-70" width="20" height="120" rx="8" fill="#e5e5e5"/>
+                                    <path d="M-30 -110 a34 34 0 1 1 60 0 l-12 22 h-36 z" fill="#e5e5e5"/>
+                                    <rect x="-9" y="-126" width="18" height="30" fill="#1b1b1d"/>
+                                </g>
+                                <g fill="#7cc4ff" opacity=".9">
+                                    <path d="M70 110 c10 14 16 22 16 30 a16 16 0 0 1 -32 0 c0 -8 6 -16 16 -30z"/>
+                                    <path d="M110 70 c6 9 10 14 10 19 a10 10 0 0 1 -20 0 c0 -5 4 -10 10 -19z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="float-card cutout-tag"><strong>20+ yrs</strong><span>Kevin, founder</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat"><strong><span class="count" data-to="500">0</span><em>+</em></strong><span>Jobs completed</span></div>
+                <div class="stat"><strong><span class="count" data-to="4.9" data-decimals="1">0</span><em>★</em></strong><span>Average Google rating</span></div>
+                <div class="stat"><strong><span class="count" data-to="60">0</span><em>min</em></strong><span>Emergency response</span></div>
+                <div class="stat"><strong><span class="count" data-to="6">0</span></strong><span>Licensed professionals</span></div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-line"><i></i></div>
+                <div class="tl-item">
+                    <div class="tl-year">2009</div>
+                    <div class="tl-body"><h3>One truck, one promise</h3><p>Kevin opens First Choice Plumbing to give neighbors honest, flat-rate plumbing.</p></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2013</div>
+                    <div class="tl-body"><h3>24/7 emergency line</h3><p>We launch round-the-clock service and our 60-minute response guarantee.</p></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2018</div>
+                    <div class="tl-body"><h3>Commercial division</h3><p>Restaurants, offices and retail spaces join our maintenance contracts.</p></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2022</div>
+                    <div class="tl-body"><h3>Camera and trenchless tech</h3><p>Sewer cameras, hydro-jetting and thermal leak detection. Less digging, faster fixes.</p></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">Today</div>
+                    <div class="tl-body"><h3>500+ jobs and counting</h3><p>6 licensed pros, a 4.9-star rating, and the same founding promise.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services: horizontal scroll with 3D cards -->
+    <section class="services" id="services">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What we do</span>
+                <h2 class="display split">Every pipe. Every problem. One call.</h2>
+            </div>
+        </div>
+        <div class="h-scroller">
+            <div class="h-track">
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">01</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><path d="M100 22 L168 136 H32 Z" fill="none" stroke="#E4FF1A" stroke-width="10" stroke-linejoin="round"/><path d="M100 64 V96" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="116" r="6" fill="currentColor"/></svg></div>
+                    <h3>Emergency repairs</h3>
+                    <p>Burst pipes, major leaks, backups. A plumber at your door within 60 minutes, 24/7/365.</p>
+                    <span class="svc-more">Call now →</span>
+                </article>
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">02</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><path d="M40 40 H120 a30 30 0 0 1 30 30 V150" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="22"/><path d="M40 40 H120 a30 30 0 0 1 30 30 V150" fill="none" stroke="#E4FF1A" stroke-width="6" stroke-dasharray="10 12"/><circle cx="150" cy="120" r="12" fill="#7cc4ff"/></svg></div>
+                    <h3>Drain cleaning</h3>
+                    <p>Hydro-jetting and camera-guided snaking clear stubborn clogs for good.</p>
+                    <span class="svc-more">Book a clean →</span>
+                </article>
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">03</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><rect x="66" y="14" width="68" height="132" rx="26" fill="none" stroke="currentColor" stroke-width="8"/><rect x="80" y="96" width="40" height="30" rx="8" fill="#E4FF1A"/><path d="M92 52 q8 -12 0 -24 M108 52 q8 -12 0 -24" stroke="#ff7a45" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+                    <h3>Water heaters</h3>
+                    <p>Tank and tankless installs, repairs and replacements. Hot water, same day.</p>
+                    <span class="svc-more">Get options →</span>
+                </article>
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">04</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><circle cx="90" cy="72" r="40" fill="none" stroke="currentColor" stroke-width="8"/><path d="M120 102 L158 140" stroke="#E4FF1A" stroke-width="12" stroke-linecap="round"/><path d="M90 50 c10 14 16 22 16 30 a16 16 0 0 1 -32 0 c0 -8 6 -16 16 -30z" fill="#7cc4ff"/></svg></div>
+                    <h3>Leak detection</h3>
+                    <p>Acoustic and thermal imaging find hidden leaks without tearing up your home.</p>
+                    <span class="svc-more">Find the leak →</span>
+                </article>
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">05</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><path d="M20 110 H180" stroke="currentColor" stroke-opacity=".35" stroke-width="26"/><path d="M20 110 H180" stroke="#E4FF1A" stroke-width="4"/><rect x="84" y="30" width="32" height="40" rx="6" fill="currentColor"/><circle cx="100" cy="50" r="8" fill="#E4FF1A"/><path d="M100 70 V96" stroke="currentColor" stroke-width="4"/></svg></div>
+                    <h3>Sewer lines</h3>
+                    <p>Camera inspections and trenchless repair for root intrusion and collapsed lines.</p>
+                    <span class="svc-more">Inspect my line →</span>
+                </article>
+                <article class="svc-card" data-tilt="12">
+                    <span class="shine"></span><span class="svc-num">06</span>
+                    <div class="svc-art"><svg viewBox="0 0 200 160"><circle cx="100" cy="80" r="62" fill="#E4FF1A" opacity=".14"/><path d="M30 130 V70 a20 20 0 0 1 20 -20 H150 a20 20 0 0 1 20 20 V130" fill="none" stroke="#c98f63" stroke-width="16"/><path d="M60 130 V90 H140 V130" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="10"/><rect x="92" y="40" width="16" height="20" rx="3" fill="#E4FF1A"/></svg></div>
+                    <h3>Repiping and gas lines</h3>
+                    <p>Copper, PEX and certified gas line work, pressure-tested and fully code-compliant.</p>
+                    <span class="svc-more">Plan a repipe →</span>
+                </article>
+                <article class="svc-card cta-card" data-tilt="12">
+                    <span class="shine"></span>
+                    <span class="eyebrow" style="color:rgba(11,11,12,.7)">Not sure what you need?</span>
+                    <div>
+                        <h3>Free estimates and second opinions.</h3>
+                        <p>Tell us the problem. We'll tell you the honest fix, and the flat price, before we start.</p>
+                        <a href="#contact" class="btn btn-ghost magnetic" style="margin-top:1.4rem;border-color:rgba(11,11,12,.3);background:rgba(255,255,255,.3)"><span class="btn-label">Get my estimate →</span></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- All services: photo catalog with category filter -->
+    <section class="section catalog" id="all-services">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">All services</span>
+                <h2 class="display split">24 ways we keep your water flowing.</h2>
+                <p>From a dripping faucet to a new sewer line, one licensed team handles it all. Pick a category or book any service directly.</p>
+            </div>
+            <div class="chips" role="toolbar" aria-label="Filter services">
+                <button class="chip is-active" data-filter="all">All<small>24</small></button><button class="chip" data-filter="repair">Repairs<small>5</small></button><button class="chip" data-filter="drains">Drains &amp; sewer<small>4</small></button><button class="chip" data-filter="water">Water heaters &amp; quality<small>4</small></button><button class="chip" data-filter="fixtures">Fixtures &amp; rooms<small>7</small></button><button class="chip" data-filter="specialty">Specialty &amp; commercial<small>4</small></button>
+            </div>
+            <div class="catalog-grid">
+                <article class="photo-card" data-cat="repair" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/plumber.jpg" alt="Emergency plumbing" width="500" height="333" loading="lazy" decoding="async"><span class="photo-tag">Repairs</span></div>
+                    <div class="photo-body"><h3>Emergency plumbing</h3><p>Burst pipes, major leaks and no-water emergencies. A plumber at your door within 60 minutes, 24/7.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="repair" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/leak.jpg" alt="Leak detection" width="1000" height="800" loading="lazy" decoding="async"><span class="photo-tag">Repairs</span></div>
+                    <div class="photo-body"><h3>Leak detection</h3><p>Acoustic and thermal tools pinpoint hidden leaks in walls, floors and slabs without tearing things up.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="repair" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/copper.jpg" alt="Pipe repair &amp; replacement" width="1000" height="750" loading="lazy" decoding="async"><span class="photo-tag">Repairs</span></div>
+                    <div class="photo-body"><h3>Pipe repair &amp; replacement</h3><p>Cracked, corroded or pinhole-leaking pipes repaired or replaced in copper, PEX or PVC.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="repair" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/water-main.jpg" alt="Water line repair" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Repairs</span></div>
+                    <div class="photo-body"><h3>Water line repair</h3><p>Main water line leaks, low pressure and aging service lines fixed or fully replaced.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="repair" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/pex.jpg" alt="Whole-home repiping" width="500" height="240" loading="lazy" decoding="async"><span class="photo-tag">Repairs</span></div>
+                    <div class="photo-body"><h3>Whole-home repiping</h3><p>Swap old galvanized or failing pipes for modern PEX or copper with minimal wall damage.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="drains" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/under-sink.jpg" alt="Drain cleaning &amp; unclogging" width="1000" height="562" loading="lazy" decoding="async"><span class="photo-tag">Drains &amp; sewer</span></div>
+                    <div class="photo-body"><h3>Drain cleaning &amp; unclogging</h3><p>Slow sinks, tubs and floor drains cleared fast with snaking and hydro-jetting.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="drains" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/sewer-truck.jpg" alt="Sewer line repair" width="1000" height="750" loading="lazy" decoding="async"><span class="photo-tag">Drains &amp; sewer</span></div>
+                    <div class="photo-body"><h3>Sewer line repair</h3><p>Root intrusion, bellies and collapsed lines repaired, including trenchless options.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="drains" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/sewer-camera.jpg" alt="Sewer camera inspection" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Drains &amp; sewer</span></div>
+                    <div class="photo-body"><h3>Sewer camera inspection</h3><p>A camera goes down the line so you see exactly what&#x27;s wrong before paying for a fix.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="drains" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/sump-pump.jpg" alt="Sump pump installation" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Drains &amp; sewer</span></div>
+                    <div class="photo-body"><h3>Sump pump installation</h3><p>New pumps, battery backups and repairs to keep your basement dry in every storm.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="water" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/water-heater.jpg" alt="Water heater repair &amp; install" width="1000" height="750" loading="lazy" decoding="async"><span class="photo-tag">Water heaters &amp; quality</span></div>
+                    <div class="photo-body"><h3>Water heater repair &amp; install</h3><p>Gas and electric tank heaters repaired or replaced, often the same day.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="water" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/tankless.jpg" alt="Tankless water heaters" width="500" height="354" loading="lazy" decoding="async"><span class="photo-tag">Water heaters &amp; quality</span></div>
+                    <div class="photo-body"><h3>Tankless water heaters</h3><p>Endless hot water and lower energy bills with a wall-mounted tankless system.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="water" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/softener.jpg" alt="Water softeners" width="500" height="667" loading="lazy" decoding="async"><span class="photo-tag">Water heaters &amp; quality</span></div>
+                    <div class="photo-body"><h3>Water softeners</h3><p>Stop hard-water scale, spotty dishes and dry skin with a properly sized softener.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="water" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/ro-filter.jpg" alt="Water filtration &amp; RO" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Water heaters &amp; quality</span></div>
+                    <div class="photo-body"><h3>Water filtration &amp; RO</h3><p>Whole-house filters and reverse osmosis drinking water systems, installed and serviced.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/bathroom.jpg" alt="Bathroom plumbing &amp; remodels" width="1000" height="700" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Bathroom plumbing &amp; remodels</h3><p>Rough-in to final fixtures for bathroom renovations, vanities and freestanding tubs.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/shower.jpg" alt="Shower &amp; tub plumbing" width="1000" height="768" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Shower &amp; tub plumbing</h3><p>Valve replacements, leaking shower heads, diverters and new walk-in shower plumbing.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/toilet.jpg" alt="Toilet repair &amp; installation" width="500" height="667" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Toilet repair &amp; installation</h3><p>Running, clogged or leaking toilets fixed, plus new and water-saving toilet installs.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/kitchen.jpg" alt="Kitchen plumbing" width="1000" height="750" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Kitchen plumbing</h3><p>Sinks, dishwasher and ice-maker hookups, and full kitchen remodel plumbing.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/faucet.jpg" alt="Faucets &amp; fixtures" width="1000" height="667" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Faucets &amp; fixtures</h3><p>Dripping faucets repaired and new faucets, fixtures and hose bibs installed.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/disposal.jpg" alt="Garbage disposals" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Garbage disposals</h3><p>Jammed or leaking disposals repaired, or a new quieter unit installed.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="fixtures" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/braided.jpg" alt="Supply lines &amp; shut-off valves" width="1000" height="667" loading="lazy" decoding="async"><span class="photo-tag">Fixtures &amp; rooms</span></div>
+                    <div class="photo-body"><h3>Supply lines &amp; shut-off valves</h3><p>Burst-proof braided supply lines and new shut-off valves so small leaks stay small.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="specialty" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/gas-valve.jpg" alt="Gas line services" width="500" height="379" loading="lazy" decoding="async"><span class="photo-tag">Specialty &amp; commercial</span></div>
+                    <div class="photo-body"><h3>Gas line services</h3><p>Certified gas line installs, repairs and pressure testing for appliances, grills and generators.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="specialty" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/backflow.jpg" alt="Backflow testing &amp; prevention" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Specialty &amp; commercial</span></div>
+                    <div class="photo-body"><h3>Backflow testing &amp; prevention</h3><p>Annual backflow testing, certification, and new preventer installation to meet code.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="specialty" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/commercial.jpg" alt="Commercial plumbing" width="1000" height="667" loading="lazy" decoding="async"><span class="photo-tag">Specialty &amp; commercial</span></div>
+                    <div class="photo-body"><h3>Commercial plumbing</h3><p>Restaurants, offices and retail. Grease traps, fixtures and scheduled maintenance plans.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+                <article class="photo-card" data-cat="specialty" data-tilt="5">
+                    <div class="photo-media"><img src="images/services/drain-camera.jpg" alt="Plumbing inspections" width="500" height="375" loading="lazy" decoding="async"><span class="photo-tag">Specialty &amp; commercial</span></div>
+                    <div class="photo-body"><h3>Plumbing inspections</h3><p>Pre-purchase and annual inspections with a written report of what needs attention.</p><button type="button" class="photo-book">Book this →</button></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second marquee -->
+    <div class="marquee alt" aria-hidden="true">
+        <div class="marquee-track reverse">
+            <div class="marquee-group">
+                <span>Licensed &amp; insured</span><span>·</span>
+                <span>Upfront flat pricing</span><span>·</span>
+                <span>2-year warranty</span><span>·</span>
+                <span>Background-checked techs</span><span>·</span>
+                <span>Free second opinions</span><span>·</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process -->
+    <section class="section" id="process">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">How it works</span>
+                <h2 class="display split">Simple. Fast. Done right.</h2>
+            </div>
+            <div class="process-grid">
+                <div class="step"><b>01</b><h3>Call or book</h3><p>Call the 24/7 line or send the form. We schedule you immediately.</p></div>
+                <div class="step"><b>02</b><h3>Fast arrival</h3><p>A licensed plumber arrives fully stocked to fix most jobs in one visit.</p></div>
+                <div class="step"><b>03</b><h3>Flat-rate quote</h3><p>We diagnose, then quote a fixed price before touching anything.</p></div>
+                <div class="step"><b>04</b><h3>Problem solved</h3><p>Clean work, tested twice, backed by our 2-year warranty.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews: floating 3D cards -->
+    <section class="section reviews" id="reviews">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Reviews</span>
+                <h2 class="display split">Neighbors say it best.</h2>
+            </div>
+            <div class="review-grid">
+                <figure class="review" data-tilt="6">
+                    <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+                    <blockquote>At my door 45 minutes after a midnight burst pipe. Professional, explained everything, fixed in under two hours.</blockquote>
+                    <figcaption><i>SM</i><div>Sarah M.<span>Burst pipe repair</span></div></figcaption>
+                </figure>
+                <figure class="review" data-tilt="6">
+                    <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+                    <blockquote>Three plumbers couldn't fix our sewer backup. First Choice found the roots on camera and cleared it the same day.</blockquote>
+                    <figcaption><i>LR</i><div>Lisa R.<span>Sewer line service</span></div></figcaption>
+                </figure>
+                <figure class="review" data-tilt="6">
+                    <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+                    <blockquote>Three honest options for a new water heater, no upsell, no pressure. The quote matched the invoice exactly.</blockquote>
+                    <figcaption><i>AK</i><div>Amanda K.<span>Water heater install</span></div></figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common questions -->
+    <section class="section faq" id="faq">
+        <div class="wrap faq-grid">
+            <div class="faq-side">
+                <div class="section-head">
+                    <span class="eyebrow">Common questions</span>
+                    <h2 class="display split">Answers before you even call.</h2>
+                    <p>Straight answers about pricing, emergencies and how we work. Don't see your question? Just ask.</p>
+                </div>
+                <div class="faq-cta">
+                    <a href="tel:+15551234567" class="btn btn-primary magnetic"><span class="btn-label">Call (555) 123-4567</span></a>
+                    <a href="#contact" class="btn btn-ghost magnetic"><span class="btn-label">Ask a question</span></a>
+                </div>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary><span class="faq-num">01</span><span class="faq-q">Do you offer 24/7 emergency plumbing?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Yes. Our emergency line is answered around the clock, 365 days a year, and we aim to have a licensed plumber at your door within 60 minutes. There&#x27;s no extra charge for nights, weekends or holidays.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">02</span><span class="faq-q">How much will my repair cost?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>We diagnose the problem first, then give you a flat-rate price before any work starts. The price we quote is the price you pay, with no hidden fees or hourly surprises. Estimates for new installations are always free.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">03</span><span class="faq-q">Are your plumbers licensed and insured?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Every technician is fully licensed, insured and background-checked, and personally trained by our founder, Kevin. You&#x27;ll know exactly who is coming into your home.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">04</span><span class="faq-q">Do you guarantee your work?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Yes. Every repair and installation comes with our 2-year workmanship warranty. If something we fixed fails because of our work, we come back and make it right at no charge.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">05</span><span class="faq-q">How soon can you come for a non-emergency job?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Call or send the quote form and we&#x27;ll schedule you right away. Same-day appointments are often available, and we call back within 30 minutes during business hours.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">06</span><span class="faq-q">What should I do before you arrive in an emergency?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Turn off your home&#x27;s main water shut-off valve to stop the flooding, and switch off the water heater if the leak is near it. Move valuables away from the water. If you smell gas, leave the house first and call your gas utility or 911 from outside.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">07</span><span class="faq-q">Can you find a leak without tearing out my walls?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>In most cases, yes. We use acoustic listening equipment, thermal imaging and camera inspections to pinpoint hidden leaks, so we only open up the exact spot that needs repair.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">08</span><span class="faq-q">Should I repair or replace my water heater?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Tank water heaters usually last around 8 to 12 years. If yours is newer and the problem is a part like a thermostat or valve, a repair usually makes sense. If it&#x27;s older, leaking from the tank, or rusty, replacement is often the better value. We&#x27;ll give you honest options for both.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">09</span><span class="faq-q">Do you give second opinions?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Yes, and they&#x27;re free. If another company quoted you a big repair, we&#x27;ll take a look and tell you honestly whether it&#x27;s really needed.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">10</span><span class="faq-q">Do you work on commercial properties?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Yes. We handle restaurants, offices and retail spaces, including grease traps, fixtures, backflow testing and scheduled maintenance plans.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span class="faq-num">11</span><span class="faq-q">Will you clean up after the job?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+                    <div class="faq-a"><p>Always. Our team uses boot covers and drop cloths, and we clean up completely before we leave.</p></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+        <div class="wrap">
+            <div class="contact-panel">
+                <div>
+                    <span class="eyebrow">Free quote</span>
+                    <h2 class="display split" style="margin-top:1.2rem">Let's fix it today.</h2>
+                    <div class="contact-lines">
+                        <a href="tel:+15551234567" class="big-phone magnetic" style="display:inline-block">(555) 123-4567</a>
+                        <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Emergency 24/7 · Office Mon–Fri 7am–6pm, Sat 8am–4pm</div>
+                        <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> <a href="mailto:info@firstchoiceplumbing.com">info@firstchoiceplumbing.com</a></div>
+                        <div class="contact-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.66 16.66L13.41 20.9a2 2 0 01-2.83 0l-4.24-4.24a8 8 0 1111.32 0z"/><circle cx="12" cy="11" r="3"/></svg> 123 Plumber Way, Suite 100</div>
+                    </div>
+                </div>
+                <form class="form" id="quoteForm" novalidate>
+                    <div class="form-row">
+                        <div class="field"><input id="q-name" name="name" placeholder=" " required><label for="q-name">Full name</label></div>
+                        <div class="field"><input id="q-phone" name="phone" type="tel" placeholder=" " required><label for="q-phone">Phone</label></div>
+                    </div>
+                    <div class="field">
+                        <select id="q-service" name="service" required>
+                            <option value="" disabled selected hidden></option>
+                            <option>Emergency repair</option>
+                            <option>Drain cleaning</option>
+                            <option>Water heater</option>
+                            <option>Leak detection</option>
+                            <option>Sewer line</option>
+                            <option>Repiping / gas line</option>
+                            <option>Something else</option>
+                        </select>
+                        <label for="q-service">Service needed</label>
+                    </div>
+                    <div class="field"><textarea id="q-msg" name="message" placeholder=" "></textarea><label for="q-msg">Tell us what's happening</label></div>
+                    <button type="submit" class="btn btn-primary magnetic"><span class="btn-label">Send request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span></button>
+                    <p class="form-note" aria-live="polite">We call back within 30 minutes during business hours.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer-big" aria-hidden="true">First Choice</div>
+        <div class="footer-row">
+            <span>&copy; 2026 First Choice Plumbing · Licensed &amp; insured</span>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="../index.html" data-transition>Classic site</a>
+            </nav>
+        </div>
+        <p class="footer-credit">Developed by <strong>Falcon System Tech</strong></p>
+        <details class="photo-credits"><summary>Photo credits</summary><ul><li>Backflow: “Backflow preventer PQ.jpg” by Mds08011, CC BY 4.0, <a href="https://commons.wikimedia.org/wiki/File:Backflow_preventer_PQ.jpg" target="_blank" rel="noopener">source</a></li><li>Bathroom: “Bathroom in Luxury Home” by Foto Miki Digital, PDM, <a href="https://www.flickr.com/photos/96511847@N04/10798221476" target="_blank" rel="noopener">source</a></li><li>Braided: “Project 365 #21: 210110 But What Is It?” by comedy_nose, PDM, <a href="https://www.flickr.com/photos/23408922@N07/4294178554" target="_blank" rel="noopener">source</a></li><li>Commercial: “Housing Improvement Project Goal 2: Canyon Mess Hall commercial kitche” by YellowstoneNPS, PDM, <a href="https://www.flickr.com/photos/80223459@N05/53925634479" target="_blank" rel="noopener">source</a></li><li>Copper: “Copper Pipe Burner Parts” by Sea Dreams Wood Boat Forum, CC0, <a href="https://www.flickr.com/photos/92281245@N07/22418569783" target="_blank" rel="noopener">source</a></li><li>Disposal: “Under Sink Garbage Disposal and White Pipes (53370206837).jpg” by Tony Webster, CC BY 2.0, <a href="https://commons.wikimedia.org/wiki/File:Under_Sink_Garbage_Disposal_and_White_Pipes_(53370206837).jpg" target="_blank" rel="noopener">source</a></li><li>Drain camera: “CCTV Inspection of Weeping Tile with the VIPER Drain Camera.jpg” by FiberscopeDOTnet, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:CCTV_Inspection_of_Weeping_Tile_with_the_VIPER_Drain_Camera.jpg" target="_blank" rel="noopener">source</a></li><li>Faucet: “Long Kitchen Faucet” by vieninsweden, CC0, <a href="https://www.flickr.com/photos/134679901@N08/30336854121" target="_blank" rel="noopener">source</a></li><li>Gas valve: “MainLineValve7.jpg” by Glen Dillon, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File:MainLineValve7.jpg" target="_blank" rel="noopener">source</a></li><li>Kitchen: “The Kitchen Sink! - Stories in East Van - Roland in Vancouver 2414” by roland, CC0, <a href="https://www.flickr.com/photos/35034347371@N01/160444800" target="_blank" rel="noopener">source</a></li><li>Leak: “Drops Hanging” by pasukaru76, CC0, <a href="https://www.flickr.com/photos/38451115@N04/3552211550" target="_blank" rel="noopener">source</a></li><li>Pex: “PEX installation tools and fittings.jpg” by Tomwsulcer, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:PEX_installation_tools_and_fittings.jpg" target="_blank" rel="noopener">source</a></li><li>Plumber: “Plumber 01.jpg” by Amuzujoe, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Plumber_01.jpg" target="_blank" rel="noopener">source</a></li><li>Ro filter: “Reverse Osmosis System.jpg” by Mas mufti, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Reverse_Osmosis_System.jpg" target="_blank" rel="noopener">source</a></li><li>Sewer camera: “PVIVideoPig.JPG” by The original uploader was Leonard G. at English Wikipedia., CC SA 1.0, <a href="https://commons.wikimedia.org/wiki/File:PVIVideoPig.JPG" target="_blank" rel="noopener">source</a></li><li>Sewer truck: “2013_12_11_Locating Sewer Laterals, Winchester St” by MassDOT, PDM, <a href="https://www.flickr.com/photos/42009447@N05/14219293668" target="_blank" rel="noopener">source</a></li><li>Shower: “Bathroom Shower” by YellowstoneNPS, PDM, <a href="https://www.flickr.com/photos/80223459@N05/48877712171" target="_blank" rel="noopener">source</a></li><li>Softener: “Water softener.jpg” by రవిచంద్ర, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Water_softener.jpg" target="_blank" rel="noopener">source</a></li><li>Sump pump: “Pump sump (3190648767).jpg” by SuSanA Secretariat, CC BY 2.0, <a href="https://commons.wikimedia.org/wiki/File:Pump_sump_(3190648767).jpg" target="_blank" rel="noopener">source</a></li><li>Tankless: “Tankless water heaters.jpg” by Downtowngal, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Tankless_water_heaters.jpg" target="_blank" rel="noopener">source</a></li><li>Toilet: “Hotel bathroom with toilet, toilet brush, and toilet paper in hotel in” by Wolfmann, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Hotel_bathroom_with_toilet,_toilet_brush,_and_toilet_paper_in_hotel_in_Os,_Hordaland,_Norway_2018-03-19_E._Also_wall_and_floor_tiles.jpg" target="_blank" rel="noopener">source</a></li><li>Under sink: “Fixing galley sink drain underway” by MUSTAD MARINE, PDM, <a href="https://www.flickr.com/photos/136938983@N07/38122472686" target="_blank" rel="noopener">source</a></li><li>Water heater: “26-basement-boilet-water-heater” by R Willis, PDM, <a href="https://www.flickr.com/photos/34662313@N07/17715613311" target="_blank" rel="noopener">source</a></li><li>Water main: “Hornsey, burst water main repairs - geograph.org.uk - 6800281.jpg” by Jim Osley, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:Hornsey,_burst_water_main_repairs_-_geograph.org.uk_-_6800281.jpg" target="_blank" rel="noopener">source</a></li></ul></details>
+    </div>
+</footer>
+
+<a href="tel:+15551234567" class="float-call" aria-label="Call now">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/premium.js?v=7"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you offer 24/7 emergency plumbing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our emergency line is answered around the clock, 365 days a year, and we aim to have a licensed plumber at your door within 60 minutes. There's no extra charge for nights, weekends or holidays."}}, {"@type": "Question", "name": "How much will my repair cost?", "acceptedAnswer": {"@type": "Answer", "text": "We diagnose the problem first, then give you a flat-rate price before any work starts. The price we quote is the price you pay, with no hidden fees or hourly surprises. Estimates for new installations are always free."}}, {"@type": "Question", "name": "Are your plumbers licensed and insured?", "acceptedAnswer": {"@type": "Answer", "text": "Every technician is fully licensed, insured and background-checked, and personally trained by our founder, Kevin. You'll know exactly who is coming into your home."}}, {"@type": "Question", "name": "Do you guarantee your work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every repair and installation comes with our 2-year workmanship warranty. If something we fixed fails because of our work, we come back and make it right at no charge."}}, {"@type": "Question", "name": "How soon can you come for a non-emergency job?", "acceptedAnswer": {"@type": "Answer", "text": "Call or send the quote form and we'll schedule you right away. Same-day appointments are often available, and we call back within 30 minutes during business hours."}}, {"@type": "Question", "name": "What should I do before you arrive in an emergency?", "acceptedAnswer": {"@type": "Answer", "text": "Turn off your home's main water shut-off valve to stop the flooding, and switch off the water heater if the leak is near it. Move valuables away from the water. If you smell gas, leave the house first and call your gas utility or 911 from outside."}}, {"@type": "Question", "name": "Can you find a leak without tearing out my walls?", "acceptedAnswer": {"@type": "Answer", "text": "In most cases, yes. We use acoustic listening equipment, thermal imaging and camera inspections to pinpoint hidden leaks, so we only open up the exact spot that needs repair."}}, {"@type": "Question", "name": "Should I repair or replace my water heater?", "acceptedAnswer": {"@type": "Answer", "text": "Tank water heaters usually last around 8 to 12 years. If yours is newer and the problem is a part like a thermostat or valve, a repair usually makes sense. If it's older, leaking from the tank, or rusty, replacement is often the better value. We'll give you honest options for both."}}, {"@type": "Question", "name": "Do you give second opinions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and they're free. If another company quoted you a big repair, we'll take a look and tell you honestly whether it's really needed."}}, {"@type": "Question", "name": "Do you work on commercial properties?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We handle restaurants, offices and retail spaces, including grease traps, fixtures, backflow testing and scheduled maintenance plans."}}, {"@type": "Question", "name": "Will you clean up after the job?", "acceptedAnswer": {"@type": "Answer", "text": "Always. Our team uses boot covers and drop cloths, and we clean up completely before we leave."}}]}</script>
+</body>
+</html>

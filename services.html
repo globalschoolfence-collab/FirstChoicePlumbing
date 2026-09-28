@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | First Choice Plumbing</title>
+    <meta name="description" content="Complete plumbing services — emergency repairs, drain cleaning, water heaters, pipe replacement, sewer lines, gas lines & more. Licensed professionals, 24/7.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=4">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <style>
+        .page-hero { background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); color: white; padding: 4rem 0 3rem; text-align: center; }
+        .page-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: .6rem; }
+        .page-hero p { color: rgba(255,255,255,.8); font-size: 1.05rem; }
+        .breadcrumb { display: flex; align-items: center; gap: .5rem; justify-content: center; font-size: .85rem; margin-bottom: 1.2rem; color: rgba(255,255,255,.6); }
+        .breadcrumb a { color: rgba(255,255,255,.7); } .breadcrumb a:hover { color: var(--orange); }
+        .service-detail { padding: 5rem 0; }
+        .service-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 5rem; padding-bottom: 5rem; border-bottom: 1px solid var(--gray-200); }
+        .service-detail-grid:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .service-detail-grid.reverse { direction: rtl; }
+        .service-detail-grid.reverse > * { direction: ltr; }
+        .service-visual { background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid)); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; color: white; }
+        .service-visual svg { width: 80px; height: 80px; margin: 0 auto 1rem; color: rgba(255,255,255,.5); }
+        .service-visual strong { font-size: 1.2rem; display: block; }
+        .service-detail-content h2 { font-size: 1.7rem; font-weight: 800; margin-bottom: .8rem; }
+        .service-detail-content > p { color: var(--gray-500); margin-bottom: 1.4rem; line-height: 1.7; }
+        .service-included { margin-bottom: 1.6rem; }
+        .service-included h4 { font-size: .9rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gray-500); margin-bottom: .8rem; }
+        .service-included ul { display: flex; flex-direction: column; gap: .55rem; }
+        .service-included li { display: flex; align-items: center; gap: .6rem; font-size: .9rem; }
+        .service-included li svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
+        @media(max-width:768px) { .service-detail-grid { grid-template-columns: 1fr; } .service-detail-grid.reverse { direction: ltr; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-left">
+            <div class="top-bar-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                Serving Your Local Area
+            </div>
+        </div>
+        <div class="top-bar-right">
+            <span class="badge">⚡ Emergency Service Available</span>
+            <div class="top-bar-item"><a href="tel:+15551234567">📞 (555) 123-4567</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <div class="logo-text">
+                    <strong>First Choice Plumbing</strong>
+                    <span>Licensed &amp; Insured Professionals</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="tel:+15551234567" class="nav-phone">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg>
+                    (555) 123-4567
+                </a>
+                <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+            </div>
+            <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Services</span></div>
+        <h1>Our Plumbing Services</h1>
+        <p>Complete residential &amp; commercial plumbing solutions — available 24/7</p>
+    </div>
+</div>
+
+<section class="service-detail">
+    <div class="container">
+
+        <div class="service-detail-grid">
+            <div class="service-visual">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <strong>Emergency Plumbing</strong>
+                <p style="margin-top:.5rem;opacity:.7;font-size:.88rem">60-Min Response Guaranteed</p>
+            </div>
+            <div class="service-detail-content">
+                <span class="section-tag orange">Available 24/7/365</span>
+                <h2>Emergency Plumbing Repairs</h2>
+                <p>A plumbing emergency doesn't wait for business hours, and neither do we. Our emergency response team is always on standby, ready to dispatch within minutes. We guarantee arrival within 60 minutes — or you get a discount on the job.</p>
+                <div class="service-included">
+                    <h4>What's Included</h4>
+                    <ul>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Burst and frozen pipe repair</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sewage backups and overflows</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Major water leaks and flooding</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Main water line shutoff assistance</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gas line emergency shutoff</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No overtime charges on holidays</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Call Emergency Line — (555) 123-4567</a>
+            </div>
+        </div>
+
+        <div class="service-detail-grid reverse">
+            <div class="service-visual">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M19 7H5a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>
+                <strong>Drain Cleaning</strong>
+                <p style="margin-top:.5rem;opacity:.7;font-size:.88rem">Fast &amp; Permanent Solutions</p>
+            </div>
+            <div class="service-detail-content">
+                <span class="section-tag">Most Popular Service</span>
+                <h2>Drain Cleaning &amp; Unclogging</h2>
+                <p>Slow drains and clogs are not just annoying — they can indicate bigger problems. We use professional-grade equipment to fully clear your drains, not just punch a hole through the blockage. One call, permanent fix.</p>
+                <div class="service-included">
+                    <h4>What's Included</h4>
+                    <ul>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Kitchen sink and garbage disposal clogs</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bathroom sink, tub, and shower drains</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Toilet clog removal</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hydro-jetting for stubborn blockages</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Main sewer line clearing</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Camera inspection available</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Schedule Drain Cleaning</a>
+            </div>
+        </div>
+
+        <div class="service-detail-grid">
+            <div class="service-visual">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2z"/></svg>
+                <strong>Water Heaters</strong>
+                <p style="margin-top:.5rem;opacity:.7;font-size:.88rem">All Brands &amp; Types</p>
+            </div>
+            <div class="service-detail-content">
+                <span class="section-tag">Install &amp; Repair</span>
+                <h2>Water Heater Services</h2>
+                <p>No hot water? Fluctuating temperatures? Banging sounds from your tank? We service all makes and models of water heaters and carry the most common units on our trucks for same-day installation.</p>
+                <div class="service-included">
+                    <h4>What's Included</h4>
+                    <ul>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Traditional tank water heater repair</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tankless water heater installation</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Electric and gas water heaters</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Anode rod replacement &amp; flushing</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Pressure relief valve replacement</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Same-day units available</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Water Heater Quote</a>
+            </div>
+        </div>
+
+        <div class="service-detail-grid reverse">
+            <div class="service-visual">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                <strong>Sewer Line Services</strong>
+                <p style="margin-top:.5rem;opacity:.7;font-size:.88rem">Camera Inspection Included</p>
+            </div>
+            <div class="service-detail-content">
+                <span class="section-tag">Advanced Technology</span>
+                <h2>Sewer Line Services</h2>
+                <p>Recurring backups, foul odors, or slow drains throughout your home can indicate a main sewer line problem. We use camera inspection to diagnose accurately, then apply the right solution — from hydro-jetting to trenchless repair.</p>
+                <div class="service-included">
+                    <h4>What's Included</h4>
+                    <ul>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sewer camera video inspection</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hydro-jetting high-pressure cleaning</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Root intrusion removal</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Trenchless pipe lining (CIPP)</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Full sewer line replacement</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Municipal connection repairs</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Schedule Sewer Inspection</a>
+            </div>
+        </div>
+
+        <div class="service-detail-grid">
+            <div class="service-visual">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <strong>Gas Line Services</strong>
+                <p style="margin-top:.5rem;opacity:.7;font-size:.88rem">Safety Certified</p>
+            </div>
+            <div class="service-detail-content">
+                <span class="section-tag">Licensed &amp; Certified</span>
+                <h2>Gas Line Installation &amp; Repair</h2>
+                <p>Gas line work requires the highest level of precision and safety. Our certified gas plumbers handle all gas line projects with strict adherence to code and thorough pressure testing before any gas is turned back on.</p>
+                <div class="service-included">
+                    <h4>What's Included</h4>
+                    <ul>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gas leak detection and repair</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> New gas line installation</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gas appliance connection</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Generator gas hookups</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fireplace and BBQ lines</li>
+                        <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Pressure testing and certification</li>
+                    </ul>
+                </div>
+                <a href="contact.html" class="btn btn-primary">Get Gas Line Service</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="emergency-banner">
+    <div class="container">
+        <div class="emergency-inner">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <div class="emergency-text">
+                <strong>Plumbing Emergency? Don't Wait!</strong>
+                <span>We respond 24/7 — within 60 minutes</span>
+            </div>
+            <a href="tel:+15551234567" class="emergency-phone">📞 (555) 123-4567</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom" style="padding:1.5rem 0">
+            <span>&copy; 2026 First Choice Plumbing. All rights reserved.</span>
+            <span><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="services.html">Services</a> &nbsp;|&nbsp; <a href="contact.html">Contact</a></span>
+        </div>
+    </div>
+</footer>
+
+<a href="tel:+15551234567" class="float-call" aria-label="Call Now">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006.46 6.46l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.09z"/></svg>
+</a>
+<script src="js/main.js"></script>
+</body>
+</html>
