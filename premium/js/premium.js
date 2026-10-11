@@ -15,16 +15,7 @@
     const $ = (s, c = document) => c.querySelector(s);
     const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-    /* ---------- Theme ---------- */
     let hero3d = null;
-    const setTheme = theme => {
-        root.dataset.theme = theme;
-        try { localStorage.setItem('fcp-theme', theme); } catch (e) {}
-        if (hero3d) hero3d.setTheme(theme);
-    };
-    $$('.theme-toggle').forEach(btn => btn.addEventListener('click', () => {
-        setTheme(root.dataset.theme === 'light' ? 'dark' : 'light');
-    }));
 
     /* ---------- Split headlines into words ---------- */
     const wrapWord = node => {
@@ -103,7 +94,7 @@
         };
         resize();
         for (let i = 0; i < 90; i++) {
-            pts.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + .4, v: Math.random() * .6 + .2, a: Math.random() * .6 + .2 });
+            pts.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2.2 + .6, v: Math.random() * .6 + .2, a: Math.random() * .5 + .35, c: ['37,99,235', '249,115,22', '13,148,136', '198,226,0', '124,58,237'][i % 5] });
         }
         const draw = () => {
             ctx.clearRect(0, 0, w, h);
@@ -112,7 +103,7 @@
                 if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(228,255,26,${p.a})`;
+                ctx.fillStyle = `rgba(${p.c},${p.a})`;
                 ctx.fill();
             }
             raf = requestAnimationFrame(draw);
@@ -123,7 +114,24 @@
     })();
 
     /* ---------- 3D hero scene ---------- */
-    hero3d = initHero3D($('.hero-canvas'));
+    // Three.js is 600 KB, so skip it where the scene can't show (no WebGL) or the visitor asked to save data;
+    // the CSS glow behind the hero is the fallback. Added before 'load' fires, so the loader still waits for it.
+    let heroIntroPlayed = false;
+    const webgl = (() => {
+        try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+        catch (e) { return false; }
+    })();
+    if (webgl && !navigator.connection?.saveData) {
+        const three = document.createElement('script');
+        three.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+        three.integrity = 'sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu';
+        three.crossOrigin = 'anonymous';
+        three.onload = () => {
+            hero3d = initHero3D($('.hero-canvas'));
+            if (hero3d && heroIntroPlayed) hero3d.intro(); // arrived after the loader finished
+        };
+        document.head.append(three);
+    }
 
     /* ---------- Loader sequence ---------- */
     const pageLoaded = new Promise(res => {
@@ -146,7 +154,7 @@
         const counter = { v: 0 };
         const num = $('.loader-num');
         const tl = gsap.timeline();
-        tl.to('.loader-logo path', { strokeDashoffset: 0, duration: 1.4, ease: 'power2.inOut' })
+        tl.to('.loader-logo', { opacity: 1, scale: 1, duration: 1.2, ease: 'expo.out' })
           .to('.loader-name span', { y: 0, duration: 1, ease: 'expo.out' }, .3)
           .to(counter, { v: 100, duration: 2, ease: 'power2.inOut', onUpdate: () => {
               num.textContent = String(Math.round(counter.v)).padStart(3, '0');
@@ -167,6 +175,7 @@
 
     /* ---------- Hero intro ---------- */
     function heroIntro() {
+        heroIntroPlayed = true;
         if (!hasGsap) return;
         gsap.from('.hero-title .w > span', { yPercent: 115, rotate: 4, duration: 1.3, ease: 'expo.out', stagger: .07 });
         gsap.from('.hero-in', { y: 30, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .12, delay: .35 });
@@ -382,10 +391,16 @@
     grid.addEventListener('click', e => {
         const btn = e.target.closest('.photo-book');
         if (!btn) return;
-        const service = btn.closest('.photo-card').querySelector('h3').textContent.trim();
+        const card = btn.closest('.photo-card');
+        const service = card.querySelector('h3').textContent.trim();
         const select = document.getElementById('q-service');
         const msg = document.getElementById('q-msg');
-        if (select) select.value = 'Something else';
+        if (select) {
+            select.value = card.dataset.cat !== 'excavating' ? 'Something else'
+                : /septic/i.test(service) ? 'Septic system'
+                : /drain|grading/i.test(service) ? 'Drainage / grading'
+                : 'Excavation / sewer & water lines';
+        }
         if (msg) msg.value = `I need help with: ${service}. `;
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => document.getElementById('q-name')?.focus({ preventScroll: true }), 900);
@@ -442,9 +457,40 @@
 (() => {
     const form = document.getElementById('quoteForm');
     if (!form) return;
+    // Cloudflare Turnstile CAPTCHA: paste the site key here (and set TURNSTILE_SECRET on the function) to turn it on
+    const TURNSTILE_SITE_KEY = '';
+    let captcha = null;
+    if (TURNSTILE_SITE_KEY) {
+        captcha = Object.assign(document.createElement('div'), { className: 'cf-turnstile' });
+        captcha.dataset.sitekey = TURNSTILE_SITE_KEY;
+        captcha.dataset.theme = 'auto';
+        form.querySelector('button[type="submit"]').before(captcha);
+        document.head.append(Object.assign(document.createElement('script'), { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true }));
+    }
+    // Phone: digits only, shown as (330) 350-1111; must be a valid 10-digit US number (same rule as the server)
+    const phone = form.querySelector('input[type="tel"]');
+    const phoneDigits = () => phone.value.replace(/\D/g, '');
+    const phoneOk = () => /^[2-9]\d{2}[2-9]\d{6}$/.test(phoneDigits()) && !/^(\d)\1{9}$/.test(phoneDigits());
+    Object.assign(phone, { inputMode: 'numeric', autocomplete: 'tel-national' });
+    phone.addEventListener('input', () => {
+        let d = phoneDigits();
+        d = d.replace(/^1/, ''); // +1 country code (US area codes never start with 1)
+        d = d.slice(0, 10);
+        phone.value = d.length > 6 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`
+                    : d.length > 3 ? `(${d.slice(0, 3)}) ${d.slice(3)}` : d;
+        if (d.length === 10) phone.classList.toggle('is-invalid', !phoneOk());
+        else phone.classList.remove('is-invalid');
+    });
+    phone.addEventListener('blur', () => phone.classList.toggle('is-invalid', !!phone.value && !phoneOk()));
+
     form.addEventListener('submit', e => {
         e.preventDefault();
         const missing = [...form.querySelectorAll('[required]')].filter(f => !f.value.trim());
+        if (!missing.length && !phoneOk()) {
+            phone.classList.add('is-invalid');
+            form.querySelector('.form-note').textContent = 'Please enter a valid 10-digit phone number, e.g. (330) 350-1111.';
+            missing.push(phone);
+        }
         if (missing.length) {
             missing[0].focus();
             missing.forEach(f => f.animate(
@@ -455,14 +501,38 @@
         }
         const note = form.querySelector('.form-note');
         const btn = form.querySelector('button[type="submit"]');
+        const label = btn.querySelector('.btn-label');
+        const labelHTML = label.innerHTML;
         btn.disabled = true;
-        btn.querySelector('.btn-label').textContent = 'Sending…';
-        setTimeout(() => {
-            btn.querySelector('.btn-label').textContent = 'Request received ✓';
+        label.textContent = 'Sending…';
+
+        // Each request is emailed to the business inbox via the sendQuote Cloud Run function (1stchoicefunctions/)
+        const data = Object.fromEntries(new FormData(form));
+        data.page = 'Premium website';
+        // Give up after 15s so the button never hangs if the email service is down
+        const timeout = new AbortController();
+        const timer = setTimeout(() => timeout.abort(), 15000);
+        fetch('https://us-central1-stchoiceps.cloudfunctions.net/sendplumbingquote', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(data),
+            signal: timeout.signal
+        }).finally(() => clearTimeout(timer)).then(async res => {
+            const reply = await res.json().catch(() => ({}));
+            if (!res.ok || reply.success !== true) throw new Error(reply.error || `HTTP ${res.status}`);
+            label.textContent = 'Request received ✓';
             note.className = 'form-note form-success';
             note.textContent = "Thanks! We'll call you back shortly.";
             form.reset();
-        }, 1200);
+        }).catch(err => {
+            btn.disabled = false;
+            label.innerHTML = labelHTML;
+            note.className = 'form-note';
+            console.warn('Quote form not delivered:', err.message);
+            note.textContent = `Sorry, that didn’t send (${err.name === 'AbortError' ? 'timed out' : err.message}). Please call us at (330) 350-1111.`;
+        }).finally(() => {
+            if (captcha && window.turnstile) turnstile.reset(captcha); // each token works once
+        });
     });
 })();
 
@@ -513,7 +583,7 @@ function initHero3D(container) {
         yellow: new THREE.MeshStandardMaterial({ color: 0xd8f20f, metalness: .45, roughness: .25 }),
         chrome: new THREE.MeshStandardMaterial({ color: 0xd6d9dc, metalness: 1, roughness: .16 }),
         copper: new THREE.MeshStandardMaterial({ color: 0xc8784a, metalness: .9, roughness: .28 }),
-        dark:   new THREE.MeshStandardMaterial({ color: 0x1c1c1e, metalness: .6, roughness: .4 })
+        dark:   new THREE.MeshStandardMaterial({ color: 0x2a2a2a, metalness: .6, roughness: .4 })
     };
 
     const rig = new THREE.Group();
@@ -605,7 +675,7 @@ function initHero3D(container) {
     }
     const pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const pMat = new THREE.PointsMaterial({ color: 0xe4ff1a, size: .045, transparent: true, opacity: .75, depthWrite: false });
+    const pMat = new THREE.PointsMaterial({ color: 0x3a3a3a, size: .045, transparent: true, opacity: .45, depthWrite: false });
     const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
 
@@ -664,27 +734,19 @@ function initHero3D(container) {
         renderer.render(scene, camera);
     };
 
-    let started = false;
     const loop = () => {
         requestAnimationFrame(loop);
         if (visible && !document.hidden) render();
     };
 
     const api = {
-        setTheme(theme) {
-            pMat.color.set(theme === 'light' ? 0x3a3a3a : 0xe4ff1a);
-            pMat.opacity = theme === 'light' ? .45 : .75;
-            mats.dark.color.set(theme === 'light' ? 0x2a2a2a : 0x1c1c1e);
-        },
         intro() {
             if (!window.gsap || reduceMotion) return;
             gsap.from(rig.scale, { x: .01, y: .01, z: .01, duration: 2, ease: 'expo.out' });
             gsap.from(rig.rotation, { y: -2.4, duration: 2.4, ease: 'expo.out' });
         }
     };
-    api.setTheme(document.documentElement.dataset.theme);
-
-    if (reduceMotion) { render(); }
-    else if (!started) { started = true; loop(); }
+    if (reduceMotion) render();
+    else loop();
     return api;
 }

@@ -16,19 +16,13 @@ if (hamburger && navLinks) {
     });
 }
 
-// Active nav link
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            navItems.forEach(a => a.classList.remove('active'));
-            const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-            if (active) active.classList.add('active');
-        }
-    });
-}, { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => observer.observe(s));
+// In-page links (e.g. "Get Free Quote" → #contact) scroll smoothly without adding #section to the address bar
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const target = document.getElementById(a.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+}));
 
 // Counter animation
 function animateCounters() {
@@ -72,29 +66,78 @@ revealEls.forEach(el => {
     el.style.transition = 'opacity .5s ease, transform .5s ease';
     revealObserver.observe(el);
 });
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.revealed').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-    });
-});
-// Apply revealed
-const style = document.createElement('style');
-style.textContent = '.revealed { opacity: 1 !important; transform: none !important; }';
-document.head.appendChild(style);
 
-// Contact form
+// Contact form: emails each request to the business inbox via the sendQuote Cloud Run function (1stchoicefunctions/)
+const QUOTE_ENDPOINT = 'https://us-central1-stchoiceps.cloudfunctions.net/sendplumbingquote';
+// Same checks as the sendQuote function: 10-digit US number (area code and exchange don't start with 0/1)
+const isValidPhone = d => /^[2-9]\d{2}[2-9]\d{6}$/.test(d) && !/^(\d)\1{9}$/.test(d);
+const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v);
+// Cloudflare Turnstile CAPTCHA: paste the site key here (and set TURNSTILE_SECRET on the function) to turn it on
+const TURNSTILE_SITE_KEY = '';
 const form = document.getElementById('contactForm');
 if (form) {
-    form.addEventListener('submit', e => {
+    const btn = form.querySelector('.form-submit');
+    const btnHTML = btn.innerHTML;
+    let captcha = null;
+    if (TURNSTILE_SITE_KEY) {
+        captcha = Object.assign(document.createElement('div'), { className: 'cf-turnstile' });
+        captcha.dataset.sitekey = TURNSTILE_SITE_KEY;
+        captcha.style.marginBottom = '1rem';
+        btn.before(captcha);
+        document.head.append(Object.assign(document.createElement('script'), { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true }));
+    }
+
+    // Phone: digits only, shown as (330) 350-1111; must be a valid 10-digit US number (same rule as the server)
+    const phone = form.querySelector('input[type="tel"]');
+    if (phone) {
+        Object.assign(phone, { inputMode: 'numeric', autocomplete: 'tel-national' });
+        phone.addEventListener('input', () => {
+            let d = phone.value.replace(/\D/g, '');
+            d = d.replace(/^1/, ''); // +1 country code (US area codes never start with 1)
+            d = d.slice(0, 10);
+            phone.value = d.length > 6 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`
+                        : d.length > 3 ? `(${d.slice(0, 3)}) ${d.slice(3)}` : d;
+            phone.setCustomValidity(!d || isValidPhone(d) ? '' : 'Please enter a valid 10-digit phone number, e.g. (330) 350-1111.');
+        });
+    }
+    // Email is optional, but if given it must look like name@domain.com
+    const email = form.querySelector('input[type="email"]');
+    if (email) {
+        email.addEventListener('input', () => {
+            const v = email.value.trim();
+            email.setCustomValidity(!v || isValidEmail(v) ? '' : 'Please enter a valid email address, e.g. name@example.com.');
+        });
+    }
+
+    form.addEventListener('submit', async e => {
         e.preventDefault();
-        const btn = form.querySelector('.form-submit');
         btn.textContent = 'Sending...';
         btn.disabled = true;
-        setTimeout(() => {
+        const data = Object.fromEntries(new FormData(form));
+        data.page = document.title;
+        // Give up after 15s so the button never hangs if the email service is down
+        const timeout = new AbortController();
+        const timer = setTimeout(() => timeout.abort(), 15000);
+        try {
+            const res = await fetch(QUOTE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(data),
+                signal: timeout.signal
+            });
+            clearTimeout(timer);
+            const reply = await res.json().catch(() => ({}));
+            if (!res.ok || reply.success !== true) throw new Error(reply.error || `HTTP ${res.status}`);
             btn.textContent = 'Message Sent! We\'ll call you shortly.';
             btn.style.background = '#16a34a';
             form.reset();
-        }, 1400);
+        } catch (err) {
+            btn.innerHTML = btnHTML;
+            btn.disabled = false;
+            console.warn('Quote form not delivered:', err.message);
+            alert(`Sorry, your request could not be sent (${err.name === 'AbortError' ? 'timed out' : err.message}). Please call us at (330) 350-1111.`);
+        } finally {
+            if (captcha && window.turnstile) turnstile.reset(captcha); // each token works once
+        }
     });
 }
